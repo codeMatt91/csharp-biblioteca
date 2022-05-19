@@ -26,6 +26,48 @@ namespace csharp_biblioteca
         }
 
 
+
+        public bool SaveUtenti(string filename)
+        {
+            // Salva gli utenti sul file
+        }
+
+
+        public bool RestoreUtenti(string filename)
+        {
+            // Ricostruisce gli utenti a partire dal file che abbiamo caricato
+        }
+
+
+        public void CercaLibro(string isbn)
+        {
+            if (Libri.ContainsKey(isbn))
+            {
+                Console.WriteLine("Il LIbro e presente nel sistema:");
+                Libri[isbn].ToString();
+            }
+            else
+            {
+                Console.WriteLine("Libro non trovato");
+            }
+
+        }
+
+
+        public void CercaDvd(string codice)
+        {
+            if (Dvd.ContainsKey(codice))
+            {
+                Console.WriteLine("Il Dvd e presente nel sistema:");
+                Dvd[codice].ToString();
+            }
+            else
+            {
+                Console.WriteLine("Dvd non trovato");
+            }
+
+        }
+
         public void AggiungiUtente(Utente utente)
         { 
             string nome = utente.Nome;
@@ -85,6 +127,8 @@ namespace csharp_biblioteca
 
         }
 
+      
+
 
         public void AggiungiPrestito(Utente utente, Documento documento)
         { 
@@ -102,6 +146,8 @@ namespace csharp_biblioteca
 
 
             Prestito prestito = new Prestito(chiave, inizioPrestito, finePrestito, utente, documento);
+            Prestiti.Add(prestito);
+            documento.Stato = "In prestito";
 
             //if(prestito.Contains(prestito.Numero))
             //Prestiti.Add(prestito);

@@ -22,6 +22,8 @@ namespace csharp_biblioteca
 
         }
 
+
+
         public void CercaUtente(Utente utente, Dictionary<string, Utente> listaUtenti)
         {
             string key = utente.Nome + ";" + utente.Cognome + ";" + utente.Email;
