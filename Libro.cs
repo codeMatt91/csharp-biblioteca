@@ -21,7 +21,7 @@ namespace csharp_biblioteca
 
 
 
-        public Libro(string titolo, int anno, string scaff, List<string> author, string isbn, string settore, int pagine) : base(titolo, anno, scaff, author)
+        public Libro(string titolo, int anno, string scaff, string author, string isbn, string settore, int pagine) : base(titolo, anno, scaff, author)
         {
             this.ISBN = isbn;
             this.Settore = settore;

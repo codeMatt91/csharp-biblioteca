@@ -19,7 +19,7 @@ namespace csharp_biblioteca
 
 
 
-        public Dvd(string titolo, int anno, string scaff, List<string> author, string codice, string genere, double durata) : base(titolo, anno, scaff, author)
+        public Dvd(string titolo, int anno, string scaff, string author, string codice, string genere, double durata) : base(titolo, anno, scaff, author)
         {
             this.Codice = codice;
             this.Genere = genere;

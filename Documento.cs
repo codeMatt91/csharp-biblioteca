@@ -14,36 +14,48 @@ namespace csharp_biblioteca
         private int anno;
         public int Anno { get => anno; set => anno = value; }
 
-        public enum Stato { Disponibile = 1, Indisponibile = 0 }
+        private string stato;
+        public string Stato { get => stato; set => stato = value; }
 
         private string scaffale;
         public string Scaffale { get => scaffale; set => scaffale = value; }
 
-        private List<string> autori;
+        private string autori;
 
-        public List<string> Autori { get => autori; set => autori = value; }
+        public string Autori { get => autori; set => autori = value; }
 
 
 
-        public Documento(string titolo, int anno, string scaff, List<string> author )
+        public Documento(string titolo, int anno, string scaff, string author )
         { 
             this.Titolo = titolo;
             this.Anno = anno;
             this.scaffale = scaff;
             this.Autori = author;
-            //enum stato { Disponibile };
+            this.Stato = "Disponibile";
 
-    }
+        }
+
+        public void ImpostaInPrestito()
+        {
+            this.Stato = "In Prestito";
+        }
+
+        public void ImpostaDisponibile()
+        {
+            this.Stato = "Disponibile";
+        }
 
 
         public override string ToString()
         {
-            return string.Format("Codice:{0}\nTitolo:{1}\nSettore:{2}\nStato:{3}\nScaffale numero:{4}",
+            return string.Format("Codice:{0}\nTitolo:{1}\nSettore:{2}\nStato:{3}\nScaffale numero:{4}\n Stato:{5}",
 
                 this.Titolo,
                 this.Anno,
                 this.Scaffale,
-                this.Autori);
+                this.Autori,
+                this.Stato);
         }
 
 

@@ -12,15 +12,17 @@ namespace csharp_biblioteca
         public string Nome { get => nome; set => nome = value; }
         public Dictionary<string, Libro> Libri { get; set; }
         public Dictionary<string, Dvd> Dvd { get; set; }
+        public List<Prestito> Prestiti { get; set; }
         public Dictionary<string, Utente> Utenti { get; set; }
 
 
-        public Biblioteca(string Nome, Dictionary<string, Libro> libri, Dictionary<string, Dvd> dvd, Dictionary<string, Utente> utenti)
+        public Biblioteca(string Nome, Dictionary<string, Libro> libri, Dictionary<string, Dvd> dvd, Dictionary<string, Utente> utenti, List<Prestito> lsPrestiti)
         {
             this.Nome = Nome;
             this.Libri = libri;
             this.Dvd = dvd;
             this.Utenti = utenti;
+            this.Prestiti = lsPrestiti;
         }
 
 
@@ -33,6 +35,35 @@ namespace csharp_biblioteca
             string key = nome + ";" + cognome + ";" + email;
 
             Utenti.Add(key, utente);
+        }
+
+        public void AggiungiLibro(Libro libro)
+        {
+            string key = libro.ISBN;
+
+            if (Libri.ContainsKey(key))
+            {
+                Console.WriteLine("Libro gia presente nell'archivio");
+            }
+            else
+            { 
+                Libri.Add(key, libro);
+            }
+        }
+
+
+        public void AggiungiDvd(Dvd dvd)
+        {
+            string key = dvd.Codice;
+
+            if (Dvd.ContainsKey(key))
+            {
+                Console.WriteLine("Libro gia presente nell'archivio");
+            }
+            else
+            {
+                Dvd.Add(key, dvd);
+            }
         }
 
 
@@ -54,5 +85,40 @@ namespace csharp_biblioteca
 
         }
 
+
+        public void AggiungiPrestito(Utente utente, Documento documento)
+        { 
+            DateTime inizioPrestito = DateTime.Now;
+            DateTime finePrestito = inizioPrestito.AddMonths(1);
+
+            string chiave = "";
+            for (int i = 0; i < 6; i++)
+            { 
+                Random r = new Random();
+                int num = r.Next(0,9);
+
+                chiave += r;
+            }
+
+
+            Prestito prestito = new Prestito(chiave, inizioPrestito, finePrestito, utente, documento);
+
+            //if(prestito.Contains(prestito.Numero))
+            //Prestiti.Add(prestito);
+            
+        }
+
+
+        //public List<Prestito> CercaPrestito(Prestito p)
+        //{
+        //    if (Prestiti.Contains(p))
+        //    {
+        //        Prestiti.Where(p => Prestiti.Contains(p)).ToString();
+        //    }
+        //    else
+        //    { 
+        //        Console.WriteLine("Non ci sono prestiti ")
+        //    }
+        //}
     }
 }
