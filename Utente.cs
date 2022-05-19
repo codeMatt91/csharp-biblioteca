@@ -71,5 +71,17 @@ namespace csharp_biblioteca
             }
 
         }
+
+
+        public override string ToString()
+        {
+            return string.Format("Nome:{0}\n Cognome:{1}\n Cell:{2}\n Email:{3}\n Password",
+
+                this.Nome,
+                this.Cognome,
+                this.Cell,
+                this.Email,
+                this.Password);
+        }
     }
 }

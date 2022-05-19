@@ -20,9 +20,25 @@ namespace csharp_biblioteca // Note: actual namespace depends on the project nam
     {
         static void Main(string[] args)
         {
-                   
 
-            
+            // Definisco le librerie ed i Dizionari
+
+            Dictionary<string, Dvd> Dictdvd = new Dictionary<string, Dvd>();
+            Dictionary<string, Libro> Dictlibri = new Dictionary<string, Libro>();
+            Dictionary<string, Utente> Dictutenti = new Dictionary<string, Utente>();
+            List<Prestito> listPrestiti = new List<Prestito>();
+
+
+            Biblioteca b = new Biblioteca("Civica", Dictlibri, Dictdvd, Dictutenti, listPrestiti);
+
+
+            // Qui sto leggendo i dati dal file e ripopolando gli utenti
+
+            if (File.Exists("prova.txt"))
+                b.RestoreUtenti("prova.txt");
+            else
+                Console.WriteLine("Il file non esiste");
+
             Utente u1 = new Utente("Nome 1", "Cognome 1", "34234344", "Email 1", "Password 1");
             Utente u2 = new Utente("Nome 2", "Cognome 2", "78677867", "Email 2", "Password 2");
             Utente u3 = new Utente("Nome 3", "Cognome 3", "46797675", "Email 3", "Password 3");
@@ -30,18 +46,15 @@ namespace csharp_biblioteca // Note: actual namespace depends on the project nam
             Libro l1 = new Libro("Harry Potter", 2000, "Scaffale A", "KJ Rowling", "3478974gggjjd", "Fantasy", 345);
             Dvd dvd1 = new Dvd("Queen", 1987, "Scaffale A", "Queen", "7689", "Rock", 3.35);
             
-            Dictionary<string, Dvd> Dictdvd = new Dictionary<string, Dvd>();
-            Dictionary<string, Libro> Dictlibri = new Dictionary<string, Libro>();
-            Dictionary<string, Utente> Dictutenti = new Dictionary<string, Utente>();
-            List<Prestito> listPrestiti = new List<Prestito>();
 
             
-            Biblioteca b = new Biblioteca("Civica", Dictlibri, Dictdvd, Dictutenti, listPrestiti);
 
             b.AggiungiUtente(u1);
             b.AggiungiUtente(u2);
             b.AggiungiUtente(u3);
 
+            b.SaveUtenti("prova.txt");
+            
 
             b.AggiungiDvd(dvd1);
             b.AggiungiLibro(l1);

@@ -29,13 +29,39 @@ namespace csharp_biblioteca
 
         public bool SaveUtenti(string filename)
         {
-            // Salva gli utenti sul file
+            StreamWriter sw = new StreamWriter(filename);
+            foreach (KeyValuePair<string, Utente> entry in Utenti)
+            {
+                sw.WriteLine(entry.Value.Nome + ":" + entry.Value.Cognome + ":" + 
+                    entry.Value.Cell + ":" + entry.Value.Email + ":" + entry.Value.Password);
+               
+            }
+            sw.Close();
+            return true;
         }
 
 
         public bool RestoreUtenti(string filename)
         {
-            // Ricostruisce gli utenti a partire dal file che abbiamo caricato
+            StreamReader sw = new StreamReader(filename);
+            string sRiga = sw.ReadLine();
+            while (sRiga != null)
+            {
+
+                string[] vett = sRiga.Split(":");
+                string Nome = vett[0];
+                string Cognome = vett[1];
+                string Cell = vett[2];
+                string Email = vett[3];
+                string Password = vett[4];
+
+                Utente utente = new Utente(Nome,Cognome,Cell,Email,Password);
+
+                utente.ToString();
+
+            }
+            sw.Close();
+            return true;
         }
 
 
