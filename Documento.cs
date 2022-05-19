@@ -14,7 +14,7 @@ namespace csharp_biblioteca
         private int anno;
         public int Anno { get => anno; set => anno = value; }
 
-        public enum Stato { Disponibile = 1, Indisponibile = 0 };
+        public enum Stato { Disponibile = 1, Indisponibile = 0 }
 
         private string scaffale;
         public string Scaffale { get => scaffale; set => scaffale = value; }
@@ -31,17 +31,21 @@ namespace csharp_biblioteca
             this.Anno = anno;
             this.scaffale = scaff;
             this.Autori = author;
-        }
+            //enum stato { Disponibile };
+
+    }
 
 
         public override string ToString()
         {
             return string.Format("Codice:{0}\nTitolo:{1}\nSettore:{2}\nStato:{3}\nScaffale numero:{4}",
-                
+
                 this.Titolo,
-                this.Anno,              
+                this.Anno,
                 this.Scaffale,
                 this.Autori);
         }
+
+
     }
 }

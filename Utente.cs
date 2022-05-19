@@ -22,9 +22,52 @@ namespace csharp_biblioteca
 
         }
 
-        public bool CercaUtente(Utente utente, Dictionary<string, Utente> listaUtenti)
-        { 
+        public void CercaUtente(Utente utente, Dictionary<string, Utente> listaUtenti)
+        {
+            string key = utente.Nome + ";" + utente.Cognome + ";" + utente.Email;
+
+            try 
+            {
+                if (listaUtenti.ContainsKey(key))
+                    Console.WriteLine("L'utente e presente nel sistema");
+                else
+                    Console.WriteLine("L'utente non e presente nel sistema");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             
+        }
+
+
+
+        public void CercaLibro(string isbn, Dictionary<string, Libro> listaLibro)
+        {
+            if (listaLibro.ContainsKey(isbn))
+            {
+                Console.WriteLine("Il LIbro e presente nel sistema:");
+                listaLibro[isbn].ToString();
+            }
+            else
+            {
+                Console.WriteLine("Libro non trovato");
+            }
+
+        }
+
+        public void CercaDvd(string codice, Dictionary<string, Dvd> listaDvd)
+        {
+            if (listaDvd.ContainsKey(codice))
+            {
+                Console.WriteLine("Il Dvd e presente nel sistema:");
+                listaDvd[codice].ToString();
+            }
+            else
+            {
+                Console.WriteLine("Dvd non trovato");
+            }
+
         }
     }
 }
