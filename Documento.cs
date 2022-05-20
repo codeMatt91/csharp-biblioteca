@@ -47,16 +47,16 @@ namespace csharp_biblioteca
         }
 
 
-        public override string ToString()
-        {
-            return string.Format("Codice:{0}\nTitolo:{1}\nSettore:{2}\nStato:{3}\nScaffale numero:{4}\n Stato:{5}",
+        //public override string ToString()
+        //{
+        //    return string.Format("Codice:{0}\nTitolo:{1}\nSettore:{2}\nStato:{3}\nScaffale numero:{4}\n Stato:{5}",
 
-                this.Titolo,
-                this.Anno,
-                this.Scaffale,
-                this.Autori,
-                this.Stato);
-        }
+        //        this.Titolo,
+        //        this.Anno,
+        //        this.Scaffale,
+        //        this.Autori,
+        //        this.Stato);
+        //}
 
 
     }

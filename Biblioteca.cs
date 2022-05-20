@@ -45,6 +45,7 @@ namespace csharp_biblioteca
         {
             StreamReader sw = new StreamReader(filename);
             string sRiga = sw.ReadLine();
+            List<Utente> listU = new List<Utente>();
             while (sRiga != null)
             {
 
@@ -56,8 +57,10 @@ namespace csharp_biblioteca
                 string Password = vett[4];
 
                 Utente utente = new Utente(Nome,Cognome,Cell,Email,Password);
+                listU.Add(utente);  
 
-                utente.ToString();
+                foreach (Utente u in listU)
+                    u.ToString();
 
             }
             sw.Close();

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+
 
 /*
 Si vuole progettare un sistema per la gestione di una biblioteca.
@@ -31,13 +33,15 @@ namespace csharp_biblioteca // Note: actual namespace depends on the project nam
 
             Biblioteca b = new Biblioteca("Civica", Dictlibri, Dictdvd, Dictutenti, listPrestiti);
 
-
+           
             // Qui sto leggendo i dati dal file e ripopolando gli utenti
 
-            if (File.Exists("prova.txt"))
-                b.RestoreUtenti("prova.txt");
-            else
-                Console.WriteLine("Il file non esiste");
+            //if (File.Exists("biblioteca.txt"))
+            //    b.RestoreUtenti("biblioteca.txt");
+            //else
+            //    Console.WriteLine("Il file non esiste");
+
+            
 
             Utente u1 = new Utente("Nome 1", "Cognome 1", "34234344", "Email 1", "Password 1");
             Utente u2 = new Utente("Nome 2", "Cognome 2", "78677867", "Email 2", "Password 2");
@@ -53,8 +57,68 @@ namespace csharp_biblioteca // Note: actual namespace depends on the project nam
             b.AggiungiUtente(u2);
             b.AggiungiUtente(u3);
 
-            b.SaveUtenti("prova.txt");
+            // GESTIONE FILE DI CONFIGURAZIONE
+            string vPublic = Environment.GetEnvironmentVariable("PUBLIC");
+            if (vPublic != null)
+                Console.WriteLine("variabile d'ambiente {0}", vPublic);
+
+            vPublic += "\\Biblioteca";
+
+            //Verifico se il file biblioteca esiste nella variabile d'ambiente, se non esiste creo la cartella Biblioteca
+
             
+
+            if (!Directory.Exists(vPublic))
+            {
+
+                Console.WriteLine("Dove sono storati i file?");
+                Console.WriteLine("Sul computer centrale (C3): premi 1");
+                Console.WriteLine("Sul sul tuo computer: premi 2");
+
+                string choise = Console.ReadLine();
+                int chouseUser = Convert.ToInt32(choise);
+
+
+                if (chouseUser == 1)
+                {
+                    Directory.CreateDirectory(vPublic);
+                    Console.WriteLine("Ho creato la cartella");
+
+                    string pathCompleto = vPublic + "\\biblioteca.txt";
+
+
+                    //CREO IL FILE NELLA CARTELLA BIN DOVE MI SEGNO IL PATH DELLA CARTELLA DEL COMPUTER REMOTO
+                    StreamWriter sr = new StreamWriter("biblioteca.txt");
+                    sr.WriteLine("section:" + pathCompleto);
+
+                    sr.Close();
+                }
+                else if (chouseUser == 2)
+                {
+                    //CREO IL FILE NEL MIO COMPUTER E LO USO COME DATABASE PER SCRIVERE I DATI 
+                    StreamWriter sr = new StreamWriter("biblioteca.txt");
+                    
+                    foreach (KeyValuePair<string, Utente> entry in Dictutenti)
+                    {
+                        sr.WriteLine(entry.Value.Nome + ":" + entry.Value.Cognome + ":" +
+                            entry.Value.Cell + ":" + entry.Value.Email + ":" + entry.Value.Password);
+
+                    }
+                    sr.Close();
+                }
+                
+            }
+            else
+            {
+                
+                Console.WriteLine("la directory esiste");
+                if (Directory.Exists(vPublic + "biblioteca.txt"))
+                {
+                    //QUI LEGGERO I DATI DAL FILE e mi estrapolo il percorso per andare a leggere i file
+                
+
+
+            }
 
             b.AggiungiDvd(dvd1);
             b.AggiungiLibro(l1);
@@ -62,13 +126,16 @@ namespace csharp_biblioteca // Note: actual namespace depends on the project nam
             
             b.AggiungiPrestito(u1, l1);
             
-            Console.WriteLine("\n\nSearchByCodice: ISBN1\n\n");
+            
             
             foreach (Prestito doc in listPrestiti)
             {
+                Console.WriteLine("=========== Prestito =============");
                 Console.WriteLine(doc.ToString());
                 
             }
+            
+
             //Console.WriteLine("\n\nSearchPrestiti: Nome 1, Cognome 1\n\n");
             //List<Prestito> prestiti = b.SearchPrestiti("Nome 1", "Cognome 1");
             //foreach (Prestito p in prestiti)
