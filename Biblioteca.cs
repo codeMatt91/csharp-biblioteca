@@ -44,9 +44,9 @@ namespace csharp_biblioteca
         public bool RestoreUtenti(string filename)
         {
             StreamReader sw = new StreamReader(filename);
-            string sRiga = sw.ReadLine();
+            string sRiga;
             List<Utente> listU = new List<Utente>();
-            while (sRiga != null)
+            while ((sRiga = sw.ReadLine()) != null)
             {
 
                 string[] vett = sRiga.Split(":");
@@ -59,10 +59,11 @@ namespace csharp_biblioteca
                 Utente utente = new Utente(Nome,Cognome,Cell,Email,Password);
                 listU.Add(utente);  
 
-                foreach (Utente u in listU)
-                    u.ToString();
 
             }
+            foreach (Utente u in listU)
+                Console.WriteLine(u.ToString());
+
             sw.Close();
             return true;
         }
