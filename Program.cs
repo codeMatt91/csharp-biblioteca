@@ -20,6 +20,9 @@ namespace csharp_biblioteca // Note: actual namespace depends on the project nam
 {
     internal class Program
     {
+
+        
+
         static void Main(string[] args)
         {
 
@@ -58,6 +61,10 @@ namespace csharp_biblioteca // Note: actual namespace depends on the project nam
             b.AggiungiUtente(u3);
 
 
+            Console.WriteLine("========= Variabili di configurazione ========");
+
+            Configurazione.ReadAllSettings();
+
 
 
             // GESTIONE FILE DI CONFIGURAZIONE
@@ -70,8 +77,7 @@ namespace csharp_biblioteca // Note: actual namespace depends on the project nam
             //Verifico se il file biblioteca esiste nella variabile d'ambiente, se non esiste creo la cartella Biblioteca
 
 
-
-            if (!Directory.Exists(vPublic) || !File.Exists(mioPath))
+            if (!Directory.Exists(vPublic))
             {
 
                 Console.WriteLine("Dove vuoi storare i file?");
